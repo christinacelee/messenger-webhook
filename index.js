@@ -98,8 +98,10 @@ function handleMessage(sender_psid, received_message) {
 
   // Check if the message contains text
   if (received_message.text) {
+    console.log("got here");
 
     if (received_message.text.includes("shirt")) {
+      console.log("shirt yay");
 
       response  = {
         "attachment": {
