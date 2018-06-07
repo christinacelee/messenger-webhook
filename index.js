@@ -63,6 +63,8 @@ app.post('/webhook', (req, res) => {
 // Adds support for GET requests to our webhook
 app.get('/webhook', (req, res) => {
 
+  console.log("received GET request");
+
   // Your verify token. Should be a random string.
   let VERIFY_TOKEN = "<YOUR_VERIFY_TOKEN>"
 
@@ -83,6 +85,7 @@ app.get('/webhook', (req, res) => {
 
     } else {
       // Responds with '403 Forbidden' if verify tokens do not match
+      console.log('RIP');
       res.sendStatus(403);
     }
   }
@@ -102,85 +105,10 @@ function handleMessage(sender_psid, received_message) {
   if (received_message.text) {
     console.log("got here");
 
-    // if (received_message.text.includes("shirt")) {
-    //   console.log("shirt yay");
-    //
-    //   response  = {
-    //     "attachment": {
-    //       "type": "template",
-    //       "payload": {
-    //         "template_type": "list",
-    //         "top_element_style": "compact",
-    //         "elements": [
-    //           {
-    //             "title": "Classic T-Shirt Collection",
-    //             "subtitle": "See all our colors",
-    //             "image_url": "https://peterssendreceiveapp.ngrok.io/img/collection.png",
-    //             "buttons": [
-    //               {
-    //                 "title": "View",
-    //                 "type": "web_url",
-    //                 "url": "https://peterssendreceiveapp.ngrok.io/collection",
-    //                 "messenger_extensions": true,
-    //                 "webview_height_ratio": "tall",
-    //                 "fallback_url": "https://peterssendreceiveapp.ngrok.io/"
-    //               }
-    //             ]
-    //           },
-    //           {
-    //             "title": "Classic White T-Shirt",
-    //             "subtitle": "See all our colors",
-    //             "default_action": {
-    //               "type": "web_url",
-    //               "url": "https://peterssendreceiveapp.ngrok.io/view?item=100",
-    //               "messenger_extensions": false,
-    //               "webview_height_ratio": "tall"
-    //             }
-    //           },
-    //           {
-    //             "title": "Classic Blue T-Shirt",
-    //             "image_url": "https://peterssendreceiveapp.ngrok.io/img/blue-t-shirt.png",
-    //             "subtitle": "100% Cotton, 200% Comfortable",
-    //             "default_action": {
-    //               "type": "web_url",
-    //               "url": "https://peterssendreceiveapp.ngrok.io/view?item=101",
-    //               "messenger_extensions": true,
-    //               "webview_height_ratio": "tall",
-    //               "fallback_url": "https://peterssendreceiveapp.ngrok.io/"
-    //             },
-    //             "buttons": [
-    //               {
-    //                 "title": "Shop Now",
-    //                 "type": "web_url",
-    //                 "url": "https://peterssendreceiveapp.ngrok.io/shop?item=101",
-    //                 "messenger_extensions": true,
-    //                 "webview_height_ratio": "tall",
-    //                 "fallback_url": "https://peterssendreceiveapp.ngrok.io/"
-    //               }
-    //             ]
-    //           }
-    //         ],
-    //         "buttons": [
-    //           {
-    //             "title": "View More",
-    //             "type": "postback",
-    //             "payload": "payload"
-    //           }
-    //         ]
-    //       }
-    //     }
-    //   }
-    //
-    //
-    // } else {
-
-      // Create the payload for a basic text message
-      response = {
-        "text": `You sent the message: "${received_message.text}". Now send me an image!`
-      }
-
-
-
+    // Create the payload for a basic text message
+    response = {
+      "text": `You sent the message: "${received_message.text}". Now send me an image!`
+    }
   }
 
   // Sends the response message
