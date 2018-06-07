@@ -111,6 +111,9 @@ function handleMessage(sender_psid, received_message) {
 
 
 function callSendAPI(sender_psid, response) {
+  //just for kicks
+  console.log("PAGE_ACCESS_TOKEN:" + PAGE_ACCESS_TOKEN);
+
   // Construct the message body
   let request_body = {
     "messaging_type": "RESPONSE",
