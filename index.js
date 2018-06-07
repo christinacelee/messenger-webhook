@@ -18,8 +18,6 @@ app.listen(PORT, () => console.log('webhook is listening'));
 // Creates the endpoint for our webhook
 app.post('/webhook', (req, res) => {
 
-  console.log("got something");
-
   let body = req.body;
 
   // Checks this is an event from a page subscription
@@ -63,8 +61,6 @@ app.post('/webhook', (req, res) => {
 // Adds support for GET requests to our webhook
 app.get('/webhook', (req, res) => {
 
-  console.log("received GET request");
-
   // Your verify token. Should be a random string.
   let VERIFY_TOKEN = "<YOUR_VERIFY_TOKEN>"
 
@@ -85,7 +81,6 @@ app.get('/webhook', (req, res) => {
 
     } else {
       // Responds with '403 Forbidden' if verify tokens do not match
-      console.log('RIP');
       res.sendStatus(403);
     }
   }
@@ -94,7 +89,7 @@ app.get('/webhook', (req, res) => {
 
 
 //**************************************//
-//**Functions for handling msgs**//
+//**Functions to handle different msgs**//
 //**************************************//
 
 function handleMessage(sender_psid, received_message) {
@@ -103,7 +98,6 @@ function handleMessage(sender_psid, received_message) {
 
   // Check if the message contains text
   if (received_message.text) {
-    console.log("got here");
 
     // Create the payload for a basic text message
     response = {
